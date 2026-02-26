@@ -313,7 +313,8 @@ class KittiEvalOdom():
         plt.xlabel('x (m)', fontsize=fontsize_)
         plt.ylabel('z (m)', fontsize=fontsize_)
         fig.set_size_inches(10, 10)
-        png_title = "sequence_{:02}".format(seq)
+        seq_tag = str(seq).zfill(2) if str(seq).isdigit() else str(seq)
+        png_title = f"sequence_{seq_tag}"
         fig_pdf = self.plot_path_dir + "/" + png_title + ".pdf"
         plt.savefig(fig_pdf, bbox_inches='tight', pad_inches=0)
         plt.close(fig)
@@ -340,7 +341,8 @@ class KittiEvalOdom():
         plt.xlabel('Path Length (m)', fontsize=fontsize_)
         plt.legend(loc="upper right", prop={'size': fontsize_})
         fig.set_size_inches(5, 5)
-        fig_pdf = self.plot_error_dir + "/trans_err_{:02}.pdf".format(seq)
+        seq_tag = str(seq).zfill(2) if str(seq).isdigit() else str(seq)
+        fig_pdf = self.plot_error_dir + f"/trans_err_{seq_tag}.pdf"
         plt.savefig(fig_pdf, bbox_inches='tight', pad_inches=0)
         plt.close(fig)
 
@@ -360,7 +362,7 @@ class KittiEvalOdom():
         plt.xlabel('Path Length (m)', fontsize=fontsize_)
         plt.legend(loc="upper right", prop={'size': fontsize_})
         fig.set_size_inches(5, 5)
-        fig_pdf = self.plot_error_dir + "/rot_err_{:02}.pdf".format(seq)
+        fig_pdf = self.plot_error_dir + f"/rot_err_{seq_tag}.pdf"
         plt.savefig(fig_pdf, bbox_inches='tight', pad_inches=0)
         plt.close(fig)
 
@@ -597,18 +599,18 @@ class KittiEvalOdom():
         # seq_rpe_rot = []
 
         # Create result directory
-        # error_dir = result_dir + "/errors"
-        # self.plot_path_dir = result_dir + "/plot_path"
-        # self.plot_error_dir = result_dir + "/plot_error"
-        # result_txt = os.path.join(result_dir, "result.txt")
-        # f = open(result_txt, 'w')
+        error_dir = os.path.join(result_dir, "errors")
+        self.plot_path_dir = os.path.join(result_dir, "plot_path")
+        self.plot_error_dir = os.path.join(result_dir, "plot_error")
+        result_txt = os.path.join(result_dir, "result.txt")
+        f = open(result_txt, 'w')
 
-        # if not os.path.exists(error_dir):
-        #     os.makedirs(error_dir)
-        # if not os.path.exists(self.plot_path_dir):
-        #     os.makedirs(self.plot_path_dir)
-        # if not os.path.exists(self.plot_error_dir):
-        #     os.makedirs(self.plot_error_dir)
+        if not os.path.exists(error_dir):
+            os.makedirs(error_dir)
+        if not os.path.exists(self.plot_path_dir):
+            os.makedirs(self.plot_path_dir)
+        if not os.path.exists(self.plot_error_dir):
+            os.makedirs(self.plot_error_dir)
 
         # Create evaluation list
         if seqs is None:
@@ -665,10 +667,10 @@ class KittiEvalOdom():
 
             # compute sequence errors
             seq_err = self.calc_sequence_errors(poses_gt, poses_result)
-            # self.save_sequence_errors(seq_err, error_dir + "/" + file_name)
+            self.save_sequence_errors(seq_err, os.path.join(error_dir, file_name))
 
             # Compute segment errors
-            # avg_segment_errs = self.compute_segment_error(seq_err)
+            avg_segment_errs = self.compute_segment_error(seq_err)
 
             # compute overall error
             ave_t_err, ave_r_err = self.compute_overall_err(seq_err)
@@ -684,8 +686,22 @@ class KittiEvalOdom():
             # print("ATE (m): ", ate)
 
             ase = self.compute_ASE(poses_gt, poses_result)
+            rpe_trans, rpe_rot = self.compute_RPE(poses_gt, poses_result)
 
-            results[i] = [ave_t_err*100, ave_r_err/np.pi*180*100, ate, ase]
+            segment_metrics = {}
+            for len_ in self.lengths:
+                if len(avg_segment_errs[len_]) > 0:
+                    segment_metrics[str(len_)] = {
+                        "t_err": avg_segment_errs[len_][0] * 100,
+                        "r_err": avg_segment_errs[len_][1] / np.pi * 180 * 100,
+                    }
+                else:
+                    segment_metrics[str(len_)] = None
+
+            results[i] = {
+                "overall": [ave_t_err*100, ave_r_err/np.pi*180*100, ate, ase],
+                "segment": segment_metrics,
+            }
 
             # Compute RPE
             # rpe_trans, rpe_rot = self.compute_RPE(poses_gt, poses_result)
@@ -695,13 +711,13 @@ class KittiEvalOdom():
             # print("RPE (deg): ", rpe_rot * 180 /np.pi)
 
             # Plotting
-            # self.plot_trajectory(poses_gt, poses_result, i)
-            # self.plot_error(avg_segment_errs, i)
+            self.plot_trajectory(poses_gt, poses_result, i)
+            self.plot_error(avg_segment_errs, i)
 
             # Save result summary
-            # self.write_result(f, i, [ave_t_err, ave_r_err, ate, rpe_trans, rpe_rot])
+            self.write_result(f, i, [ave_t_err, ave_r_err, ate, rpe_trans, rpe_rot])
+        f.close()
         return results
-        # f.close()    
 
         # print("-------------------- For Copying ------------------------------")
         # for i in range(len(ave_t_errs)):
