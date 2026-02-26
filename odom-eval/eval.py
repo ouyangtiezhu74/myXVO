@@ -9,9 +9,16 @@ from pathlib import Path
 def add_summary_inplace(ep_results: dict):
     t_err, r_err, ate, s_err = [], [], [], []
     n = 0
+
+    def unpack_metrics(v2):
+        if isinstance(v2, dict):
+            return v2.get("overall", [0, 0, 0, 0])
+        return v2
+
     for seq, v2 in ep_results.items():
         if str(seq).startswith("__"):  # 跳过已有的内部字段
             continue
+        v2 = unpack_metrics(v2)
         n += 1
         if v2[0] != 0:
             t_err.append(v2[0])
@@ -107,6 +114,8 @@ for _dir in eval_dirs:
                 ate = []
                 s_err = []
                 for _, v2 in v[ep].items():
+                    if isinstance(v2, dict):
+                        v2 = v2.get("overall", [0, 0, 0, 0])
                     if v2[0] != 0:
                         t_err.append(v2[0])
                     if v2[1] != 0:
