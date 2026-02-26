@@ -1,0 +1,47 @@
+# =========================
+# Local data (DO NOT COMMIT)
+# =========================
+data/
+poses/
+
+# =========================
+# Model weights / checkpoints
+# =========================
+saved_models/
+model/
+FlowNet_checkpoints/
+init_weights/
+*.pth
+*.pt
+*.ckpt
+*.pkl
+*.npz
+*.npy
+*.onnx
+
+# =========================
+# Generated outputs / logs
+# =========================
+evaluation_results/
+runs/
+logs/
+dump*/
+output*/
+results*/
+*.log
+*.csv
+
+# =========================
+# Python cache
+# =========================
+__pycache__/
+*.pyc
+
+# =========================
+# Env / IDE
+# =========================
+.venv/
+env/
+.vscode/
+.idea/
+.DS_Store
