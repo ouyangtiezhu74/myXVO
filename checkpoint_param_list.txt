@@ -1,0 +1,334 @@
+checkpoint: D:\XVO-main\saved_models\xvo_kitti_sl\checkpoint-1.pt
+state_dict: model_state_dict
+
+encoder.maskflownet.MaskFlownet_S.conv1a.0.weight	shape=(16, 3, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv1a.0.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv1b.0.weight	shape=(16, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv1b.0.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv1c.0.weight	shape=(16, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv1c.0.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2a.0.weight	shape=(32, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2a.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2b.0.weight	shape=(32, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2b.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2c.0.weight	shape=(32, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2c.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3a.0.weight	shape=(64, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3a.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3b.0.weight	shape=(64, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3b.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3c.0.weight	shape=(64, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3c.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4a.0.weight	shape=(96, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4a.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4b.0.weight	shape=(96, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4b.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4c.0.weight	shape=(96, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4c.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5a.0.weight	shape=(128, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5a.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5b.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5b.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5c.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5c.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6a.0.weight	shape=(196, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6a.0.bias	shape=(196,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6b.0.weight	shape=(196, 196, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6b.0.bias	shape=(196,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6c.0.weight	shape=(196, 196, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6c.0.bias	shape=(196,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_0.0.weight	shape=(128, 81, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_1.0.weight	shape=(128, 209, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_2.0.weight	shape=(96, 337, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_3.0.weight	shape=(64, 433, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_4.0.weight	shape=(32, 497, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv6_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow6.weight	shape=(2, 529, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow6.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask6.weight	shape=(1, 529, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask6.bias	shape=(1,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat5.weight	shape=(529, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat5.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_0.0.weight	shape=(128, 227, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_1.0.weight	shape=(128, 355, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_2.0.weight	shape=(96, 483, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_3.0.weight	shape=(64, 579, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_4.0.weight	shape=(32, 643, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow5.weight	shape=(2, 675, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow5.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask5.weight	shape=(1, 675, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask5.bias	shape=(1,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat4.weight	shape=(675, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat4.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_0.0.weight	shape=(128, 195, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_1.0.weight	shape=(128, 323, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_2.0.weight	shape=(96, 451, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_3.0.weight	shape=(64, 547, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_4.0.weight	shape=(32, 611, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow4.weight	shape=(2, 643, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow4.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask4.weight	shape=(1, 643, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask4.bias	shape=(1,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat3.weight	shape=(643, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat3.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_0.0.weight	shape=(128, 163, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_1.0.weight	shape=(128, 291, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_2.0.weight	shape=(96, 419, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_3.0.weight	shape=(64, 515, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_4.0.weight	shape=(32, 579, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow3.weight	shape=(2, 611, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow3.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask3.weight	shape=(1, 611, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_mask3.bias	shape=(1,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat2.weight	shape=(611, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.upfeat2.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_0.0.weight	shape=(128, 131, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_1.0.weight	shape=(128, 259, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_2.0.weight	shape=(96, 387, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_3.0.weight	shape=(64, 483, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_4.0.weight	shape=(32, 547, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow2.weight	shape=(2, 579, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.pred_flow2.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv1.0.weight	shape=(128, 579, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv2.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv2.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv3.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv3.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv4.0.weight	shape=(96, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv4.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv5.0.weight	shape=(64, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv5.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv6.0.weight	shape=(32, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv6.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv7.weight	shape=(2, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.dc_conv7.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform5.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform5.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform4.weight	shape=(96, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform4.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform3.weight	shape=(64, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform3.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform2.weight	shape=(32, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.deform2.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5f.0.weight	shape=(128, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv5f.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4f.0.weight	shape=(96, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv4f.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3f.0.weight	shape=(64, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv3f.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2f.0.weight	shape=(32, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.MaskFlownet_S.conv2f.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.conv1x.0.weight	shape=(16, 4, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv1x.0.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.conv1y.0.weight	shape=(16, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv1y.0.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.conv1z.0.weight	shape=(16, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv1z.0.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.conv2x.0.weight	shape=(32, 16, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2x.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.conv2y.0.weight	shape=(32, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2y.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.conv2z.0.weight	shape=(32, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2z.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.conv3x.0.weight	shape=(64, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3x.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv3y.0.weight	shape=(64, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3y.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv3z.0.weight	shape=(64, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3z.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv4x.0.weight	shape=(96, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4x.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv4y.0.weight	shape=(96, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4y.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv4z.0.weight	shape=(96, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4z.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv5x.0.weight	shape=(128, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5x.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv5y.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5y.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv5z.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5z.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv6x.0.weight	shape=(196, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6x.0.bias	shape=(196,)	dtype=torch.float32
+encoder.maskflownet.conv6y.0.weight	shape=(196, 196, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6y.0.bias	shape=(196,)	dtype=torch.float32
+encoder.maskflownet.conv6z.0.weight	shape=(196, 196, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6z.0.bias	shape=(196,)	dtype=torch.float32
+encoder.maskflownet.conv6_0.0.weight	shape=(128, 52, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv6_1.0.weight	shape=(128, 180, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv6_2.0.weight	shape=(96, 308, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv6_3.0.weight	shape=(64, 404, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv6_4.0.weight	shape=(32, 468, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv6_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.pred_flow6.weight	shape=(2, 500, 3, 3)	dtype=torch.float32
+encoder.maskflownet.pred_flow6.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.upfeat5.weight	shape=(500, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.upfeat5.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.conv5_0.0.weight	shape=(128, 198, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv5_1.0.weight	shape=(128, 326, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv5_2.0.weight	shape=(96, 454, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv5_3.0.weight	shape=(64, 550, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv5_4.0.weight	shape=(32, 614, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv5_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.pred_flow5.weight	shape=(2, 646, 3, 3)	dtype=torch.float32
+encoder.maskflownet.pred_flow5.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.upfeat4.weight	shape=(646, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.upfeat4.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.conv4_0.0.weight	shape=(128, 166, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv4_1.0.weight	shape=(128, 294, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv4_2.0.weight	shape=(96, 422, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv4_3.0.weight	shape=(64, 518, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv4_4.0.weight	shape=(32, 582, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv4_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.pred_flow4.weight	shape=(2, 614, 3, 3)	dtype=torch.float32
+encoder.maskflownet.pred_flow4.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.upfeat3.weight	shape=(614, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.upfeat3.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.conv3_0.0.weight	shape=(128, 134, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv3_1.0.weight	shape=(128, 262, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv3_2.0.weight	shape=(96, 390, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv3_3.0.weight	shape=(64, 486, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv3_4.0.weight	shape=(32, 550, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv3_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.pred_flow3.weight	shape=(2, 582, 3, 3)	dtype=torch.float32
+encoder.maskflownet.pred_flow3.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.upfeat2.weight	shape=(582, 16, 4, 4)	dtype=torch.float32
+encoder.maskflownet.upfeat2.bias	shape=(16,)	dtype=torch.float32
+encoder.maskflownet.conv2_0.0.weight	shape=(128, 102, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2_0.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv2_1.0.weight	shape=(128, 230, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2_1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.conv2_2.0.weight	shape=(96, 358, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2_2.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.conv2_3.0.weight	shape=(64, 454, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2_3.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.conv2_4.0.weight	shape=(32, 518, 3, 3)	dtype=torch.float32
+encoder.maskflownet.conv2_4.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.pred_flow2.weight	shape=(2, 550, 3, 3)	dtype=torch.float32
+encoder.maskflownet.pred_flow2.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.dc_conv1.0.weight	shape=(128, 550, 3, 3)	dtype=torch.float32
+encoder.maskflownet.dc_conv1.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.dc_conv2.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.dc_conv2.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.dc_conv3.0.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.dc_conv3.0.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.dc_conv4.0.weight	shape=(96, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.dc_conv4.0.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.dc_conv5.0.weight	shape=(64, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.dc_conv5.0.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.dc_conv6.0.weight	shape=(32, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.dc_conv6.0.bias	shape=(32,)	dtype=torch.float32
+encoder.maskflownet.dc_conv7.weight	shape=(2, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.dc_conv7.bias	shape=(2,)	dtype=torch.float32
+encoder.maskflownet.deform6.weight	shape=(196, 196, 3, 3)	dtype=torch.float32
+encoder.maskflownet.deform6.bias	shape=(196,)	dtype=torch.float32
+encoder.maskflownet.deform5.weight	shape=(128, 128, 3, 3)	dtype=torch.float32
+encoder.maskflownet.deform5.bias	shape=(128,)	dtype=torch.float32
+encoder.maskflownet.deform4.weight	shape=(96, 96, 3, 3)	dtype=torch.float32
+encoder.maskflownet.deform4.bias	shape=(96,)	dtype=torch.float32
+encoder.maskflownet.deform3.weight	shape=(64, 64, 3, 3)	dtype=torch.float32
+encoder.maskflownet.deform3.bias	shape=(64,)	dtype=torch.float32
+encoder.maskflownet.deform2.weight	shape=(32, 32, 3, 3)	dtype=torch.float32
+encoder.maskflownet.deform2.bias	shape=(32,)	dtype=torch.float32
+transformer.pos_embed	shape=(1, 80, 256)	dtype=torch.float32
+transformer.patch_embed.proj.weight	shape=(256, 102, 12, 16)	dtype=torch.float32
+transformer.patch_embed.proj.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.0.norm1.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.0.norm1.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.0.attn.qkv.weight	shape=(768, 256)	dtype=torch.float32
+transformer.blocks.0.attn.qkv.bias	shape=(768,)	dtype=torch.float32
+transformer.blocks.0.attn.proj.weight	shape=(256, 256)	dtype=torch.float32
+transformer.blocks.0.attn.proj.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.0.norm2.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.0.norm2.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.0.mlp.fc1.weight	shape=(1024, 256)	dtype=torch.float32
+transformer.blocks.0.mlp.fc1.bias	shape=(1024,)	dtype=torch.float32
+transformer.blocks.0.mlp.fc2.weight	shape=(256, 1024)	dtype=torch.float32
+transformer.blocks.0.mlp.fc2.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.1.norm1.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.1.norm1.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.1.attn.qkv.weight	shape=(768, 256)	dtype=torch.float32
+transformer.blocks.1.attn.qkv.bias	shape=(768,)	dtype=torch.float32
+transformer.blocks.1.attn.proj.weight	shape=(256, 256)	dtype=torch.float32
+transformer.blocks.1.attn.proj.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.1.norm2.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.1.norm2.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.1.mlp.fc1.weight	shape=(1024, 256)	dtype=torch.float32
+transformer.blocks.1.mlp.fc1.bias	shape=(1024,)	dtype=torch.float32
+transformer.blocks.1.mlp.fc2.weight	shape=(256, 1024)	dtype=torch.float32
+transformer.blocks.1.mlp.fc2.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.2.norm1.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.2.norm1.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.2.attn.qkv.weight	shape=(768, 256)	dtype=torch.float32
+transformer.blocks.2.attn.qkv.bias	shape=(768,)	dtype=torch.float32
+transformer.blocks.2.attn.proj.weight	shape=(256, 256)	dtype=torch.float32
+transformer.blocks.2.attn.proj.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.2.norm2.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.2.norm2.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.2.mlp.fc1.weight	shape=(1024, 256)	dtype=torch.float32
+transformer.blocks.2.mlp.fc1.bias	shape=(1024,)	dtype=torch.float32
+transformer.blocks.2.mlp.fc2.weight	shape=(256, 1024)	dtype=torch.float32
+transformer.blocks.2.mlp.fc2.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.3.norm1.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.3.norm1.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.3.attn.qkv.weight	shape=(768, 256)	dtype=torch.float32
+transformer.blocks.3.attn.qkv.bias	shape=(768,)	dtype=torch.float32
+transformer.blocks.3.attn.proj.weight	shape=(256, 256)	dtype=torch.float32
+transformer.blocks.3.attn.proj.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.3.norm2.weight	shape=(256,)	dtype=torch.float32
+transformer.blocks.3.norm2.bias	shape=(256,)	dtype=torch.float32
+transformer.blocks.3.mlp.fc1.weight	shape=(1024, 256)	dtype=torch.float32
+transformer.blocks.3.mlp.fc1.bias	shape=(1024,)	dtype=torch.float32
+transformer.blocks.3.mlp.fc2.weight	shape=(256, 1024)	dtype=torch.float32
+transformer.blocks.3.mlp.fc2.bias	shape=(256,)	dtype=torch.float32
+transformer.norm.weight	shape=(256,)	dtype=torch.float32
+transformer.norm.bias	shape=(256,)	dtype=torch.float32
+decoder.fc1.weight	shape=(128, 20480)	dtype=torch.float32
+decoder.fc1.bias	shape=(128,)	dtype=torch.float32
+decoder.fc2.weight	shape=(128, 128)	dtype=torch.float32
+decoder.fc2.bias	shape=(128,)	dtype=torch.float32
+decoder.fc3.weight	shape=(6, 128)	dtype=torch.float32
+decoder.fc3.bias	shape=(6,)	dtype=torch.float32
+decoder.rot.weight	shape=(9, 128)	dtype=torch.float32
+decoder.rot.bias	shape=(9,)	dtype=torch.float32
