@@ -279,6 +279,19 @@ class KittiEvalOdom():
         else:
             return 0, 0
 
+    def compute_overall_err_by_length(self, seq_err, target_length):
+        """按指定子段长度统计平均平移/旋转误差。
+
+        说明：
+            旧逻辑会把 100~800m 的所有子段误差混合后再求均值。
+            该函数用于只统计某一个固定长度（例如 100m）的相对误差，
+            避免受到 200~800m 子段的影响。
+        """
+        filtered = [item for item in seq_err if item[3] == target_length]
+        if len(filtered) == 0:
+            return 0, 0
+        return self.compute_overall_err(filtered)
+
     def plot_trajectory(self, poses_gt, poses_result, seq):
         """Plot trajectory for both GT and prediction
         Args:
@@ -672,8 +685,13 @@ class KittiEvalOdom():
             # Compute segment errors
             avg_segment_errs = self.compute_segment_error(seq_err)
 
-            # compute overall error
+            # compute overall error（100~800m 混合平均，保留做兼容）
             ave_t_err, ave_r_err = self.compute_overall_err(seq_err)
+
+            # 仅统计 100m 子段平均误差（新增）
+            ave_t_err_100, ave_r_err_100 = self.compute_overall_err_by_length(
+                seq_err, target_length=100
+            )
             # print("Sequence: " + str(i))
             # print("Translational error (%): ", ave_t_err*100)
             # print("Rotational error (deg/100m): ", ave_r_err/np.pi*180*100)
@@ -700,6 +718,12 @@ class KittiEvalOdom():
 
             results[i] = {
                 "overall": [ave_t_err*100, ave_r_err/np.pi*180*100, ate, ase],
+                "overall_100": [
+                    ave_t_err_100 * 100,
+                    ave_r_err_100 / np.pi * 180 * 100,
+                    ate,
+                    ase,
+                ],
                 "segment": segment_metrics,
             }
 

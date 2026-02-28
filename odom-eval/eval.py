@@ -12,7 +12,8 @@ def add_summary_inplace(ep_results: dict):
 
     def unpack_metrics(v2):
         if isinstance(v2, dict):
-            return v2.get("overall", [0, 0, 0, 0])
+            # 新逻辑优先使用 only-100m 统计；若没有则回退旧 overall。
+            return v2.get("overall_100", v2.get("overall", [0, 0, 0, 0]))
         return v2
 
     for seq, v2 in ep_results.items():
@@ -115,7 +116,8 @@ for _dir in eval_dirs:
                 s_err = []
                 for _, v2 in v[ep].items():
                     if isinstance(v2, dict):
-                        v2 = v2.get("overall", [0, 0, 0, 0])
+                        # 终端输出只展示 100m 子段平均平移/旋转误差（不混入 200~800m）。
+                        v2 = v2.get("overall_100", v2.get("overall", [0, 0, 0, 0]))
                     if v2[0] != 0:
                         t_err.append(v2[0])
                     if v2[1] != 0:
