@@ -120,7 +120,7 @@ class KittiEvalOdom():
                 for col in range(4):
                     P[row, col] = line_split[row*4 + col + withIdx]
             if withIdx:
-                frame_idx = line_split[0]
+                frame_idx = int(line_split[0])
             else:
                 frame_idx = cnt
             poses[frame_idx] = P
@@ -202,30 +202,39 @@ class KittiEvalOdom():
                 - speed: car speed (#FIXME: 10FPS is assumed)
         """
         err = []
+        gt_frame_ids = sorted(poses_gt.keys())
+        if len(gt_frame_ids) < 2:
+            return err
+
         dist = self.trajectory_distances(poses_gt)
         self.step_size = 10
 
-        for first_frame in range(0, len(poses_gt), self.step_size):
+        for first_frame in range(0, len(gt_frame_ids), self.step_size):
             for i in range(self.num_lengths):
                 len_ = self.lengths[i]
                 last_frame = self.last_frame_from_segment_length(
                                         dist, first_frame, len_
                                         )
+                first_frame_id = gt_frame_ids[first_frame]
 
                 # Continue if sequence not long enough
-                if last_frame == -1 or \
-                        not(last_frame in poses_result.keys()) or \
-                        not(first_frame in poses_result.keys()):
+                if last_frame == -1:
+                    continue
+
+                last_frame_id = gt_frame_ids[last_frame]
+
+                # 只在预测里包含该段首尾帧时参与统计
+                if first_frame_id not in poses_result or last_frame_id not in poses_result:
                     continue
 
                 # compute rotational and translational errors
                 pose_delta_gt = np.dot(
-                                    np.linalg.inv(poses_gt[first_frame]),
-                                    poses_gt[last_frame]
+                                    np.linalg.inv(poses_gt[first_frame_id]),
+                                    poses_gt[last_frame_id]
                                     )
                 pose_delta_result = np.dot(
-                                        np.linalg.inv(poses_result[first_frame]),
-                                        poses_result[last_frame]
+                                        np.linalg.inv(poses_result[first_frame_id]),
+                                        poses_result[last_frame_id]
                                         )
                 pose_error = np.dot(
                                 np.linalg.inv(pose_delta_result),
@@ -239,7 +248,7 @@ class KittiEvalOdom():
                 num_frames = last_frame - first_frame + 1.0
                 speed = len_/(0.1*num_frames)
 
-                err.append([first_frame, r_err/len_, t_err/len_, len_, speed])
+                err.append([first_frame_id, r_err/len_, t_err/len_, len_, speed])
         return err
         
     def save_sequence_errors(self, err, file_name):
@@ -421,16 +430,14 @@ class KittiEvalOdom():
             pred (4x4 array dict): predicted poses
         """
         errors = []
-        idx_0 = list(pred.keys())[0]
-        gt_0 = gt[idx_0]
-        pred_0 = pred[idx_0]
+        common_ids = sorted(set(gt.keys()) & set(pred.keys()))
+        if len(common_ids) == 0:
+            return 0
 
-        for i in pred:
-            # cur_gt = np.linalg.inv(gt_0) @ gt[i]
+        for i in common_ids:
             cur_gt = gt[i]
             gt_xyz = cur_gt[:3, 3] 
 
-            # cur_pred = np.linalg.inv(pred_0) @ pred[i]
             cur_pred = pred[i]
             pred_xyz = cur_pred[:3, 3]
 
@@ -455,13 +462,20 @@ class KittiEvalOdom():
         """
         trans_errors = []
         rot_errors = []
-        for i in list(pred.keys())[:-1]:
-            gt1 = gt[i]
-            gt2 = gt[i+1]
+        common_ids = sorted(set(gt.keys()) & set(pred.keys()))
+        if len(common_ids) < 2:
+            return 0, 0
+
+        for idx in range(len(common_ids) - 1):
+            i1 = common_ids[idx]
+            i2 = common_ids[idx + 1]
+
+            gt1 = gt[i1]
+            gt2 = gt[i2]
             gt_rel = np.linalg.inv(gt1) @ gt2
 
-            pred1 = pred[i]
-            pred2 = pred[i+1]
+            pred1 = pred[i1]
+            pred2 = pred[i2]
             pred_rel = np.linalg.inv(pred1) @ pred2
             rel_err = np.linalg.inv(gt_rel) @ pred_rel
             
@@ -486,9 +500,16 @@ class KittiEvalOdom():
 
         eps = 0.0001
         scale_errors = []
-        for i in list(pred.keys())[:-1]:
-            gt1 = gt[i]
-            gt2 = gt[i+1]
+        common_ids = sorted(set(gt.keys()) & set(pred.keys()))
+        if len(common_ids) < 2:
+            return 0
+
+        for idx in range(len(common_ids) - 1):
+            i1 = common_ids[idx]
+            i2 = common_ids[idx + 1]
+
+            gt1 = gt[i1]
+            gt2 = gt[i2]
             gt_rel = np.linalg.inv(gt1) @ gt2
             gt_rel_trans = gt_rel[:,-1][:3]
             # print(np.linalg.norm(gt_rel_trans))
@@ -496,8 +517,8 @@ class KittiEvalOdom():
             assert abs(np.linalg.norm(gt_rel_trans)-np.sqrt(gt_rel_trans[0]**2+gt_rel_trans[1]**2+gt_rel_trans[2]**2)) < 0.00000001
             gt_rel_trans_norm = np.linalg.norm(gt_rel_trans)
             
-            pred1 = pred[i]
-            pred2 = pred[i+1]
+            pred1 = pred[i1]
+            pred2 = pred[i2]
             pred_rel = np.linalg.inv(pred1) @ pred2
             pred_rel_trans = pred_rel[:,-1][:3]
             assert abs(np.linalg.norm(pred_rel_trans)-np.sqrt(pred_rel_trans[0]**2+pred_rel_trans[1]**2+pred_rel_trans[2]**2)) < 0.00000001
@@ -645,8 +666,12 @@ class KittiEvalOdom():
             poses_gt = self.load_poses_from_txt(os.path.join(gt_dir, file_name))
             self.result_file_name = os.path.join(result_dir, file_name)
 
+            common_ids = sorted(set(poses_result.keys()) & set(poses_gt.keys()))
+            if len(common_ids) < 2:
+                continue
+
             # Pose alignment to first frame
-            idx_0 = sorted(list(poses_result.keys()))[0]
+            idx_0 = common_ids[0]
             pred_0 = poses_result[idx_0]
             gt_0 = poses_gt[idx_0]
             for cnt in poses_result:
