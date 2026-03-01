@@ -53,6 +53,24 @@ eval_tool = KittiEvalOdom()
 #nusc_gt_dir = "./dataset/nusc/gt_poses/"
 #argo2_gt_dir = "./dataset/argo2/gt_poses/"
 
+
+
+def resolve_result_dir(ep: Path, scene: str):
+    """Support both layouts:
+    1) results/<exp>/<epoch>/<scene>/*.txt
+    2) results/<exp>/<epoch>/*.txt (legacy KITTI-only)
+    """
+    scene_dir = ep / scene
+    if scene_dir.exists():
+        return scene_dir
+
+    if scene == "KITTI":
+        txt_files = sorted(ep.glob("*.txt"))
+        if txt_files:
+            return ep
+
+    return None
+
 scenes = ['KITTI', 'NUSC', 'ARGO2']
 for _dir in eval_dirs:
     print(_dir)
@@ -78,8 +96,8 @@ for _dir in eval_dirs:
         for ep in tqdm(epochs):
 
 
-            result_dir = Path(ep) / scene
-            if not result_dir.exists():
+            result_dir = resolve_result_dir(Path(ep), scene)
+            if result_dir is None:
                 continue
             # else:
             #     print(result_dir)
