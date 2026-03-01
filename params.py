@@ -32,4 +32,14 @@ class Parameters():
 		self.checkpoint_path = r'D:\XVO-main\saved_models\train_kitti_sl_A_20260118-00020809'
 		self.pretrained_flownet_path = r'D:\XVO-main\FlowNet_checkpoints\MaskFlownet'
 
+		# Normalize Windows-style backslashes to forward slashes so that downstream
+		# code using split('/') and glob path composition works consistently.
+		self.data_dir = {k: self._normalize_path(v) for k, v in self.data_dir.items()}
+		self.checkpoint_path = self._normalize_path(self.checkpoint_path)
+		self.pretrained_flownet_path = self._normalize_path(self.pretrained_flownet_path)
+
+	@staticmethod
+	def _normalize_path(path_str):
+		return path_str.replace('\\', '/')
+
 par = Parameters()
