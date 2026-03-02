@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import time
 import glob
+import argparse
 from kitti_odometry import KittiEvalOdom
 import json
 from tqdm import tqdm
@@ -38,7 +39,7 @@ def add_summary_inplace(ep_results: dict):
         "n_seq": n,
     }
 
-eval_dirs = ['train_kitti_sl_A_20260118-00020809',]
+DEFAULT_EVAL_DIRS = ['train_kitti_sl_A_20260118-00020809']
 #用脚本位置推导路径：无论你从哪里运行都不会错
 THIS_DIR = Path(__file__).resolve().parent            # .../odom-eval
 ROOT_DIR = THIS_DIR.parent                            # .../XVO-main
@@ -48,16 +49,38 @@ kitti_gt_dir = THIS_DIR / "dataset" / "kitti" / "gt_poses"
 nusc_gt_dir  = THIS_DIR / "dataset" / "nusc"  / "gt_poses"
 argo2_gt_dir = THIS_DIR / "dataset" / "argo2" / "gt_poses"
 eval_tool = KittiEvalOdom()
-#kitti_gt_dir = "./dataset/kitti/gt_poses/"
-#nusc_gt_dir = "./dataset/nusc/gt_poses/"
-#argo2_gt_dir = "./dataset/argo2/gt_poses/"
 
-scenes = ['KITTI', 'NUSC', 'ARGO2']
-for _dir in eval_dirs:
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Evaluate odometry prediction folders.")
+    parser.add_argument(
+        "--eval-dirs",
+        nargs="+",
+        default=DEFAULT_EVAL_DIRS,
+        help="Subfolders under results/ to evaluate, e.g. ORB_kitti.",
+    )
+    parser.add_argument(
+        "--scenes",
+        nargs="+",
+        default=['KITTI', 'NUSC', 'ARGO2'],
+        choices=['KITTI', 'NUSC', 'ARGO2'],
+        help="Datasets to evaluate.",
+    )
+    parser.add_argument(
+        "--alignment",
+        default=None,
+        choices=[None, 'scale', 'plain', 'scale_7dof', '7dof', '6dof'],
+        help="Alignment mode passed to KittiEvalOdom.eval.",
+    )
+    return parser.parse_args()
+
+args = parse_args()
+
+for _dir in args.eval_dirs:
     print(_dir)
     os.makedirs(f'./evaluation_results/{_dir}', exist_ok=True)
 
-    for scene in scenes:
+    for scene in args.scenes:
         if "KITTI" in scene:
             gt_dir = kitti_gt_dir
         elif "NUSC" in scene:
@@ -86,7 +109,7 @@ for _dir in eval_dirs:
             if ep_name in results.keys():
                 continue
 
-            ep_results = eval_tool.eval(gt_dir, result_dir, alignment=None)
+            ep_results = eval_tool.eval(gt_dir, result_dir, alignment=args.alignment)
             
             results[ep_name] = ep_results
         
