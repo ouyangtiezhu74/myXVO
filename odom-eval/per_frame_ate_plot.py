@@ -65,55 +65,98 @@ def main():
     parser = argparse.ArgumentParser(
         description="Plot per-frame ATE with the same logic as current odom eval (alignment=None)."
     )
-    parser.add_argument("--gt", required=True, help="Ground-truth trajectory txt path")
-    parser.add_argument("--pred", required=True, help="Predicted trajectory txt path")
-    parser.add_argument("--out", required=True, help="Output figure path, e.g. ./ate.png")
-    parser.add_argument("--title", default=None, help="Optional plot title")
+    parser.add_argument("--gt", default=None, help="Ground-truth trajectory txt path")
+    parser.add_argument("--pred", default=None, help="Predicted trajectory txt path")
+    parser.add_argument("--out", default=None, help="Output figure path, e.g. ./ate.png")
+    parser.add_argument("--gt-dir", default=None, help="Ground-truth trajectory directory")
+    parser.add_argument("--pred-dir", default=None, help="Predicted trajectory directory")
+    parser.add_argument("--out-dir", default=None, help="Output directory for multi-sequence plots")
+    parser.add_argument("--seqs", nargs="+", default=None, help="Sequence ids for directory mode, e.g. --seqs 3 4 5")
     args = parser.parse_args()
 
-    frame_ids, errors, stats = compute_per_frame_ate_like_current_eval(args.gt, args.pred)
+    single_mode = all([args.gt, args.pred, args.out])
+    dir_mode = all([args.gt_dir, args.pred_dir, args.out_dir])
 
-    out_path = Path(args.out)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    if not single_mode and not dir_mode:
+        parser.error(
+            "Either provide --gt/--pred/--out for single-file mode, "
+            "or provide --gt-dir/--pred-dir/--out-dir for directory mode."
+        )
 
-    plt.figure(figsize=(12, 5))
-    plt.plot(frame_ids, errors, linewidth=1.2, label="Per-frame ATE")
-    plt.xlabel("Frame")
-    plt.ylabel("ATE (m)")
+    if single_mode and dir_mode:
+        parser.error("Please choose only one mode: single-file or directory mode.")
 
-    title = args.title if args.title else f"Per-frame ATE\nGT: {Path(args.gt).name}, Pred: {Path(args.pred).name}"
-    plt.title(title)
-    plt.grid(True, alpha=0.3)
+    def render_plot(gt_path: str, pred_path: str, out: str):
+        frame_ids, errors, stats = compute_per_frame_ate_like_current_eval(gt_path, pred_path)
 
-    stats_text = (
-        f"RMSE: {stats['rmse']:.6f} m\n"
-        f"STD: {stats['std']:.6f} m\n"
-        f"Mean: {stats['mean']:.6f} m\n"
-        f"Median: {stats['median']:.6f} m"
-    )
-    plt.text(
-        0.02,
-        0.98,
-        stats_text,
-        transform=plt.gca().transAxes,
-        va="top",
-        ha="left",
-        bbox=dict(boxstyle="round", facecolor="white", alpha=0.85),
-    )
+        out_path = Path(out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    plt.legend(loc="upper right")
-    plt.tight_layout()
-    plt.savefig(out_path, dpi=200)
-    plt.close()
+        plt.figure(figsize=(12, 5))
+        plt.plot(frame_ids, errors, linewidth=1.2, label="Per-frame ATE")
+        plt.xlabel("Frame")
+        plt.ylabel("ATE (m)")
 
-    print("Saved figure:", out_path)
-    print(
-        "Stats -> "
-        f"RMSE: {stats['rmse']:.6f}, "
-        f"STD: {stats['std']:.6f}, "
-        f"Mean: {stats['mean']:.6f}, "
-        f"Median: {stats['median']:.6f}"
-    )
+        plt.grid(True, alpha=0.3)
+
+        stats_text = (
+            f"RMSE: {stats['rmse']:.6f} m\n"
+            f"STD: {stats['std']:.6f} m\n"
+            f"Mean: {stats['mean']:.6f} m\n"
+            f"Median: {stats['median']:.6f} m"
+        )
+        plt.text(
+            0.02,
+            0.98,
+            stats_text,
+            transform=plt.gca().transAxes,
+            va="top",
+            ha="left",
+            bbox=dict(boxstyle="round", facecolor="white", alpha=0.85),
+        )
+
+        plt.legend(loc="upper right")
+        plt.tight_layout()
+        plt.savefig(out_path, dpi=200)
+        plt.close()
+
+        print("Saved figure:", out_path)
+        print(
+            "Stats -> "
+            f"RMSE: {stats['rmse']:.6f}, "
+            f"STD: {stats['std']:.6f}, "
+            f"Mean: {stats['mean']:.6f}, "
+            f"Median: {stats['median']:.6f}"
+        )
+
+    if single_mode:
+        render_plot(args.gt, args.pred, args.out)
+        return
+
+    gt_dir = Path(args.gt_dir)
+    pred_dir = Path(args.pred_dir)
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    def resolve_seq_file(directory: Path, seq: str) -> Path:
+        candidates = [
+            directory / f"{seq}.txt",
+            directory / f"{int(seq):02d}.txt" if str(seq).isdigit() else None,
+        ]
+        for cand in candidates:
+            if cand is not None and cand.exists():
+                return cand
+        raise FileNotFoundError(f"Cannot find sequence {seq} in {directory}")
+
+    if args.seqs is None:
+        args.seqs = sorted([p.stem for p in pred_dir.glob("*.txt")])
+
+    for seq in args.seqs:
+        gt_path = resolve_seq_file(gt_dir, str(seq))
+        pred_path = resolve_seq_file(pred_dir, str(seq))
+        out_path = out_dir / f"{int(seq):02d}_per_frame_ate.png" if str(seq).isdigit() else out_dir / f"{seq}_per_frame_ate.png"
+        print(f"\n[Sequence {seq}] GT={gt_path} PRED={pred_path}")
+        render_plot(str(gt_path), str(pred_path), str(out_path))
 
 
 if __name__ == "__main__":
