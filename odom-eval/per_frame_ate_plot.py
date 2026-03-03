@@ -72,7 +72,6 @@ def main():
     parser.add_argument("--pred-dir", default=None, help="Predicted trajectory directory")
     parser.add_argument("--out-dir", default=None, help="Output directory for multi-sequence plots")
     parser.add_argument("--seqs", nargs="+", default=None, help="Sequence ids for directory mode, e.g. --seqs 3 4 5")
-    parser.add_argument("--title", default=None, help="Optional plot title")
     args = parser.parse_args()
 
     single_mode = all([args.gt, args.pred, args.out])
@@ -87,7 +86,7 @@ def main():
     if single_mode and dir_mode:
         parser.error("Please choose only one mode: single-file or directory mode.")
 
-    def render_plot(gt_path: str, pred_path: str, out: str, title: str = None):
+    def render_plot(gt_path: str, pred_path: str, out: str):
         frame_ids, errors, stats = compute_per_frame_ate_like_current_eval(gt_path, pred_path)
 
         out_path = Path(out)
@@ -98,8 +97,6 @@ def main():
         plt.xlabel("Frame")
         plt.ylabel("ATE (m)")
 
-        plot_title = title if title else f"Per-frame ATE\nGT: {Path(gt_path).name}, Pred: {Path(pred_path).name}"
-        plt.title(plot_title)
         plt.grid(True, alpha=0.3)
 
         stats_text = (
@@ -133,7 +130,7 @@ def main():
         )
 
     if single_mode:
-        render_plot(args.gt, args.pred, args.out, args.title)
+        render_plot(args.gt, args.pred, args.out)
         return
 
     gt_dir = Path(args.gt_dir)
@@ -158,9 +155,8 @@ def main():
         gt_path = resolve_seq_file(gt_dir, str(seq))
         pred_path = resolve_seq_file(pred_dir, str(seq))
         out_path = out_dir / f"{int(seq):02d}_per_frame_ate.png" if str(seq).isdigit() else out_dir / f"{seq}_per_frame_ate.png"
-        seq_title = args.title if args.title else f"Per-frame ATE (Seq {seq})"
         print(f"\n[Sequence {seq}] GT={gt_path} PRED={pred_path}")
-        render_plot(str(gt_path), str(pred_path), str(out_path), seq_title)
+        render_plot(str(gt_path), str(pred_path), str(out_path))
 
 
 if __name__ == "__main__":
