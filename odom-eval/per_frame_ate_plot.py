@@ -41,7 +41,9 @@ def compute_per_frame_ate_like_current_eval(gt_path: str, pred_path: str):
 
     frame_ids = []
     errors = []
-    for i in sorted(poses_pred.keys()):
+    # Keep iteration order exactly aligned with current compute_ATE behavior
+    # (dict insertion order from load_poses_from_txt / file line order).
+    for i in poses_pred:
         gt_xyz = poses_gt[i][:3, 3]
         pred_xyz = poses_pred[i][:3, 3]
         err = float(np.sqrt(np.sum((gt_xyz - pred_xyz) ** 2)))
